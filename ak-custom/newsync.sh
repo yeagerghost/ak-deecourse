@@ -18,6 +18,21 @@ fi
 echo "Fetching upstream..."
 git fetch upstream
 
+echo "Performing a sync from upstream to main  by executing ... "
+echo "
+git fetch upstream
+git checkout vendor-main
+git merge upstream/main
+git checkout main
+git merge vendor-main
+"
+exit 0
+# git fetch upstream
+# git checkout vendor-main
+# git merge upstream/main
+# git checkout main
+# git merge vendor-main
+#
 # Update vendor-main branch
 echo "Updating $VENDOR_MAIN_BRANCH..."
 git checkout $VENDOR_MAIN_BRANCH 2>/dev/null || git checkout -b $VENDOR_MAIN_BRANCH upstream/main

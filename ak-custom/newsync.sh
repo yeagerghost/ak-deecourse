@@ -15,21 +15,27 @@ if ! git remote get-url upstream >/dev/null 2>&1; then
   git remote add upstream "$UPSTREAM_URL"
 fi
 
-echo "Fetching upstream..."
-git fetch upstream
+git checkout $VENDOR_MAIN_BRANCH upstream/main
+git pull -u upstream main
 
-# Update vendor-main branch
-echo "Updating $VENDOR_MAIN_BRANCH..."
-git checkout $VENDOR_MAIN_BRANCH 2>/dev/null || git checkout -b $VENDOR_MAIN_BRANCH upstream/main
-git reset --hard upstream/main
-
-# Push vendor mirror to origin
-git push origin $VENDOR_MAIN_BRANCH --force-with-lease
-
+# echo "Fetching upstream..."
+# git fetch upstream
+#
+# # Update vendor-main branch
+# echo "Updating $VENDOR_MAIN_BRANCH..."
+# git checkout $VENDOR_MAIN_BRANCH 2>/dev/null || git checkout -b $VENDOR_MAIN_BRANCH upstream/main
+# git reset --hard upstream/main
+#
+# # Push vendor mirror to origin
+# git push origin $VENDOR_MAIN_BRANCH --force-with-lease
+#
 # Show incoming changes
 echo ""
 echo "📋 Commits from upstream:"
 git log --oneline --no-merges main..$VENDOR_MAIN_BRANCH
+
+echo " ===== BREAKING ======"
+exit 0
 
 echo ""
 echo "📁 Files changed:"

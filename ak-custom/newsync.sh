@@ -15,7 +15,7 @@ if ! git remote get-url upstream >/dev/null 2>&1; then
   git remote add upstream "$UPSTREAM_URL"
 fi
 
-git checkout -b $VENDOR_MAIN_BRANCH upstream/main
+git checkout $VENDOR_MAIN_BRANCH upstream/main
 git pull -u upstream main
 
 # echo "Fetching upstream..."

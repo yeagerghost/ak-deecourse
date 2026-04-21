@@ -21,10 +21,10 @@ git fetch upstream
 echo "Performing a sync from upstream to main  by executing ... "
 echo "
 git fetch upstream
-git checkout vendor-main
+git checkout $VENDOR_MAIN_BRANCH
 git merge upstream/main
 git checkout main
-git merge vendor-main
+git merge $VENDOR_MAIN_BRANCH
 "
 exit 0
 # git fetch upstream

@@ -26,7 +26,7 @@ git merge upstream/main
 git checkout main
 git merge $VENDOR_MAIN_BRANCH
 "
-exit 0
+
 # git fetch upstream
 # git checkout vendor-main
 # git merge upstream/main
@@ -34,25 +34,25 @@ exit 0
 # git merge vendor-main
 #
 # Update vendor-main branch
-echo "Updating $VENDOR_MAIN_BRANCH..."
-git checkout $VENDOR_MAIN_BRANCH 2>/dev/null || git checkout -b $VENDOR_MAIN_BRANCH upstream/main
-git reset --hard upstream/main
-
-# Push vendor mirror to origin
-git push origin $VENDOR_MAIN_BRANCH --force-with-lease
-
-# Show incoming changes
-echo ""
-echo "📋 Commits from upstream:"
-git log --oneline --no-merges main..$VENDOR_MAIN_BRANCH
-
-echo " ===== BREAKING ======"
-exit 0
-
-echo ""
-echo "📁 Files changed:"
-git diff --name-status main..$VENDOR_MAIN_BRANCH
-
+# echo "Updating $VENDOR_MAIN_BRANCH..."
+# git checkout $VENDOR_MAIN_BRANCH 2>/dev/null || git checkout -b $VENDOR_MAIN_BRANCH upstream/main
+# git reset --hard upstream/main
+#
+# # Push vendor mirror to origin
+# git push origin $VENDOR_MAIN_BRANCH --force-with-lease
+#
+# # Show incoming changes
+# echo ""
+# echo "📋 Commits from upstream:"
+# git log --oneline --no-merges main..$VENDOR_MAIN_BRANCH
+#
+# echo " ===== BREAKING ======"
+# exit 0
+#
+# echo ""
+# echo "📁 Files changed:"
+# git diff --name-status main..$VENDOR_MAIN_BRANCH
+#
 # Skip if nothing to do
 if git diff --quiet main..$VENDOR_MAIN_BRANCH; then
   echo "✅ No upstream changes to merge."
